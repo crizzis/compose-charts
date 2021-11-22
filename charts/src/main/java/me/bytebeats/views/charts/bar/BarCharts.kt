@@ -4,10 +4,8 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.dp
-import me.bytebeats.views.charts.bar.render.label.ILabelDrawer
-import me.bytebeats.views.charts.bar.render.label.SimpleLabelDrawer
+import me.bytebeats.views.charts.bar.render.label.IVerticalLabelDrawer
 import me.bytebeats.views.charts.bar.render.xaxis.IXAxisDrawer
-import me.bytebeats.views.charts.bar.render.xaxis.SimpleXAxisDrawer
 
 /**
  * Created by bytebeats on 2021/9/25 : 13:57
@@ -19,14 +17,14 @@ internal fun axisAreas(
     drawScope: DrawScope,
     totalSize: Size,
     xAxisDrawer: IXAxisDrawer,
-    labelDrawer: ILabelDrawer
+    labelDrawer: IVerticalLabelDrawer
 ): Pair<Rect, Rect> {
     with(drawScope) {
 
         val yAxisTop = labelDrawer.requiredAboveBarHeight(drawScope)
         val yAxisRight = 50.dp.toPx().coerceAtMost(size.width * 10F / 100F)
         val xAxisRight = totalSize.width
-        val xAxisTop = totalSize.height - xAxisDrawer.requiredHeight(drawScope)
+        val xAxisTop = totalSize.height - xAxisDrawer.requiredSize(drawScope)
 
         return Rect(yAxisRight, xAxisTop, xAxisRight, totalSize.height) to Rect(
             0F,
@@ -44,7 +42,7 @@ internal fun BarChartData.forEachWithArea(
     drawScope: DrawScope,
     barDrawableArea: Rect,
     progress: Float,
-    labelDrawer: ILabelDrawer,
+    labelDrawer: IVerticalLabelDrawer,
     block: (barArea: Rect, bar: BarChartData.Bar) -> Unit
 ) {
     val barCount = bars.size

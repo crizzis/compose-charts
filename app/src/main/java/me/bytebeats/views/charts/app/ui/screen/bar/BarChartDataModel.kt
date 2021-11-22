@@ -5,7 +5,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
 import me.bytebeats.views.charts.bar.BarChartData
-import me.bytebeats.views.charts.bar.render.label.SimpleLabelDrawer
+import me.bytebeats.views.charts.bar.render.label.ILabelDrawer
+import me.bytebeats.views.charts.bar.render.label.SimpleVerticalLabelDrawer
 import kotlin.random.Random
 
 
@@ -31,7 +32,7 @@ class BarChartDataModel {
         Color(0XFF607D8B)
     )
 
-    var labelDrawer by mutableStateOf(SimpleLabelDrawer(drawLocation = SimpleLabelDrawer.DrawLocation.Inside))
+    var labelDrawer by mutableStateOf(SimpleVerticalLabelDrawer(drawLocation = ILabelDrawer.DrawLocation.Inside))
         private set
 
     var barChartData by mutableStateOf(
@@ -64,13 +65,13 @@ class BarChartDataModel {
     val bars: List<BarChartData.Bar>
         get() = barChartData.bars
 
-    var labelLocation: SimpleLabelDrawer.DrawLocation = SimpleLabelDrawer.DrawLocation.Inside
+    var labelLocation: ILabelDrawer.DrawLocation = ILabelDrawer.DrawLocation.Inside
         set(value) {
             val color = when (value) {
-                SimpleLabelDrawer.DrawLocation.Inside -> Color.White
-                SimpleLabelDrawer.DrawLocation.Outside, SimpleLabelDrawer.DrawLocation.XAxis -> Color.Black
+                ILabelDrawer.DrawLocation.Inside -> Color.White
+                else -> Color.Black
             }
-            labelDrawer = SimpleLabelDrawer(drawLocation = value, labelTextColor = color)
+            labelDrawer = SimpleVerticalLabelDrawer(drawLocation = value, labelTextColor = color)
             field = value
         }
 

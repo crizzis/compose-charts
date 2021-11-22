@@ -12,10 +12,10 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import me.bytebeats.views.charts.bar.render.bar.IBarDrawer
 import me.bytebeats.views.charts.bar.render.bar.SimpleBarDrawer
-import me.bytebeats.views.charts.bar.render.label.ILabelDrawer
-import me.bytebeats.views.charts.bar.render.label.SimpleLabelDrawer
+import me.bytebeats.views.charts.bar.render.label.IVerticalLabelDrawer
+import me.bytebeats.views.charts.bar.render.label.SimpleVerticalLabelDrawer
 import me.bytebeats.views.charts.bar.render.xaxis.IXAxisDrawer
-import me.bytebeats.views.charts.bar.render.xaxis.SimpleXAxisDrawer
+import me.bytebeats.views.charts.bar.render.xaxis.SimpleVerticalXAxisDrawer
 import me.bytebeats.views.charts.bar.render.yaxis.IYAxisDrawer
 import me.bytebeats.views.charts.bar.render.yaxis.SimpleYAxisDrawer
 import me.bytebeats.views.charts.simpleChartAnimation
@@ -32,9 +32,9 @@ fun BarChar(
     modifier: Modifier = Modifier,
     animation: AnimationSpec<Float> = simpleChartAnimation(),
     barDrawer: IBarDrawer = SimpleBarDrawer(),
-    xAxisDrawer: IXAxisDrawer = SimpleXAxisDrawer(),
+    xAxisDrawer: IXAxisDrawer = SimpleVerticalXAxisDrawer(),
     yAxisDrawer: IYAxisDrawer = SimpleYAxisDrawer(),
-    labelDrawer: ILabelDrawer = SimpleLabelDrawer()
+    labelDrawer: IVerticalLabelDrawer = SimpleVerticalLabelDrawer()
 ) {
     val transitionAnimation = remember(barChartData.bars) { Animatable(initialValue = 0F) }
 
@@ -56,7 +56,7 @@ fun BarChar(
 
             yAxisDrawer.drawAxisLine(drawScope = this, canvas = canvas, drawableArea = yAxisArea)
 
-            xAxisDrawer.drawXAxisLine(drawScope = this, canvas = canvas, drawableArea = xAxisArea)
+            xAxisDrawer.drawAxisLine(drawScope = this, canvas = canvas, drawableArea = xAxisArea)
 
             barChartData.forEachWithArea(
                 this,
@@ -89,7 +89,7 @@ fun BarChar(
                     canvas = canvas,
                     label = bar.label,
                     barArea = barArea,
-                    xAxisArea = xAxisArea
+                    axisArea = xAxisArea
                 )
             }
 

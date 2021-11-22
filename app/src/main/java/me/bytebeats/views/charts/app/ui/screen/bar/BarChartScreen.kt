@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.sp
 import me.bytebeats.views.charts.app.ui.ScreenRouter
 import me.bytebeats.views.charts.app.ui.theme.Margins
 import me.bytebeats.views.charts.bar.BarChar
-import me.bytebeats.views.charts.bar.render.label.SimpleLabelDrawer
+import me.bytebeats.views.charts.bar.render.label.ILabelDrawer
 
 /**
  * Created by bytebeats on 2021/9/30 : 19:53
@@ -77,7 +77,7 @@ private fun BarChartRow(barChartDataModel: BarChartDataModel) {
 @Composable
 private fun DrawLabelLocation(
     barChartDataModel: BarChartDataModel,
-    newLocation: (SimpleLabelDrawer.DrawLocation) -> Unit
+    newLocation: (ILabelDrawer.DrawLocation) -> Unit
 ) {
     val labelDrawLocation = remember(barChartDataModel.labelDrawer) {
         barChartDataModel.labelLocation
@@ -95,7 +95,7 @@ private fun DrawLabelLocation(
                 .align(Alignment.CenterVertically),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            for (location in SimpleLabelDrawer.DrawLocation.values()) {
+            for (location in ILabelDrawer.DrawLocation.values()) {
                 OutlinedButton(
                     onClick = { newLocation(location) },
                     border = ButtonDefaults.outlinedBorder.takeIf { labelDrawLocation == location },
