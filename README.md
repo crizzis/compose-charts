@@ -10,6 +10,15 @@
 
 Simple Jetpack Compose Charts for multi-platform. Including Android, Web, Desktop.
 
+# Disclaimer
+Current supported Jetpack Compose version: `1.0.5`
+
+This library is WIP, and at the moment only contains the following charts:
+- `PieChart`(FINISHED)
+- `LineChart`
+- `BarChart`
+- `HorizontalBarChart`(WIP)
+
 ## Graph Effects
 
 <img src="/arts/pie_chart.gif" width="220" height="480"/><img src="/arts/line_chart.gif" width="220" height="480"/><img src="/arts/bar_chart.gif" width="220" height="480"/>
