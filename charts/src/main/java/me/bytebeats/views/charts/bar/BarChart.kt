@@ -10,14 +10,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import me.bytebeats.views.charts.bar.render.axis.IXAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.IYAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalXAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalYAxisDrawer
 import me.bytebeats.views.charts.bar.render.bar.IBarDrawer
 import me.bytebeats.views.charts.bar.render.bar.SimpleBarDrawer
 import me.bytebeats.views.charts.bar.render.label.IVerticalLabelDrawer
 import me.bytebeats.views.charts.bar.render.label.SimpleVerticalLabelDrawer
-import me.bytebeats.views.charts.bar.render.axis.IXAxisDrawer
-import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalXAxisDrawer
-import me.bytebeats.views.charts.bar.render.axis.IYAxisDrawer
-import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalYAxisDrawer
 import me.bytebeats.views.charts.simpleChartAnimation
 
 /**
@@ -27,7 +27,7 @@ import me.bytebeats.views.charts.simpleChartAnimation
  */
 
 @Composable
-fun BarChar(
+fun BarChart(
     barChartData: BarChartData,
     modifier: Modifier = Modifier,
     animation: AnimationSpec<Float> = simpleChartAnimation(),
@@ -43,31 +43,41 @@ fun BarChar(
     }
 
     val progress = transitionAnimation.value
-    Canvas(modifier = modifier.fillMaxSize().drawBehind {
-        drawIntoCanvas { canvas ->
-            val (xAxisArea, yAxisArea) = axisAreas(
-                drawScope = this,
-                totalSize = size,
-                xAxisDrawer = xAxisDrawer,
-                labelDrawer = labelDrawer
-            )
+    Canvas(modifier = modifier
+        .fillMaxSize()
+        .drawBehind {
+            drawIntoCanvas { canvas ->
+                val (xAxisArea, yAxisArea) = axisAreas(
+                    drawScope = this,
+                    totalSize = size,
+                    xAxisDrawer = xAxisDrawer,
+                    labelDrawer = labelDrawer
+                )
 
-            val barDrawableArea = barDrawableArea(xAxisArea)
+                val barDrawableArea = barDrawableArea(xAxisArea)
 
-            yAxisDrawer.drawAxisLine(drawScope = this, canvas = canvas, drawableArea = yAxisArea)
+                yAxisDrawer.drawAxisLine(
+                    drawScope = this,
+                    canvas = canvas,
+                    drawableArea = yAxisArea
+                )
 
-            xAxisDrawer.drawAxisLine(drawScope = this, canvas = canvas, drawableArea = xAxisArea)
+                xAxisDrawer.drawAxisLine(
+                    drawScope = this,
+                    canvas = canvas,
+                    drawableArea = xAxisArea
+                )
 
-            barChartData.forEachWithArea(
-                this,
-                barDrawableArea,
-                progress,
-                labelDrawer
-            ) { barArea, bar ->
-                barDrawer.drawBar(drawScope = this, canvas, barArea, bar)
+                barChartData.forEachWithArea(
+                    this,
+                    barDrawableArea,
+                    progress,
+                    labelDrawer
+                ) { barArea, bar ->
+                    barDrawer.drawBar(drawScope = this, canvas, barArea, bar)
+                }
             }
-        }
-    }) {
+        }) {
 
         drawIntoCanvas { canvas ->
             val (xAxisArea, yAxisArea) = axisAreas(
@@ -96,8 +106,8 @@ fun BarChar(
             yAxisDrawer.drawAxisLabels(
                 drawScope = this,
                 canvas = canvas,
-                minValue = barChartData.minY,
-                maxValue = barChartData.maxY,
+                minValue = barChartData.min,
+                maxValue = barChartData.max,
                 drawableArea = yAxisArea
             )
         }

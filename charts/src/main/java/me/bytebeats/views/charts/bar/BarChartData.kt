@@ -19,17 +19,17 @@ data class BarChartData(
         }
     }
 
-    private val yMinMaxValues: Pair<Float, Float>
+    private val minMaxValues: Pair<Float, Float>
         get() {
             val minValue = bars.minOf { it.value }
             val maxValue = bars.maxOf { it.value }
             return minValue to maxValue
         }
 
-    internal val maxY: Float
-        get() = yMinMaxValues.second + (yMinMaxValues.second - yMinMaxValues.first) * padBy / 100F
-    internal val minY: Float
-        get() = if (startAtZero) 0F else yMinMaxValues.first - (yMinMaxValues.second - yMinMaxValues.first) * padBy / 100F
+    internal val max: Float
+        get() = minMaxValues.second + (minMaxValues.second - minMaxValues.first) * padBy / 100F
+    internal val min: Float
+        get() = if (startAtZero) 0F else minMaxValues.first - (minMaxValues.second - minMaxValues.first) * padBy / 100F
 
     val maxBarValue: Float
         get() = bars.maxOf { it.value }
