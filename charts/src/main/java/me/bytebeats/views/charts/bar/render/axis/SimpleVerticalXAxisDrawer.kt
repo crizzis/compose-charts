@@ -1,4 +1,4 @@
-package me.bytebeats.views.charts.bar.render.xaxis
+package me.bytebeats.views.charts.bar.render.axis
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
  * E-mail: happychinapc@gmail.com
  * Quote: Peasant. Educated. Worker
  */
-data class SimpleHorizontalXAxisDrawer(
+data class SimpleVerticalXAxisDrawer(
     private val axisLineThickness: Dp = 1.dp,
     private val axisLineColor: Color = Color.Black
 ) : IXAxisDrawer {
@@ -35,10 +35,10 @@ data class SimpleHorizontalXAxisDrawer(
     override fun drawAxisLine(drawScope: DrawScope, canvas: Canvas, drawableArea: Rect) {
         with(drawScope) {
             val lineThickness = axisLineThickness.toPx()
-            val x = drawableArea.left - lineThickness / 2F
+            val y = drawableArea.top + lineThickness / 2F
             canvas.drawLine(
-                p1 = Offset(x = x, y = drawableArea.top),
-                p2 = Offset(x = x, y = drawableArea.bottom),
+                p1 = Offset(x = drawableArea.left, y = y),
+                p2 = Offset(x = drawableArea.right, y = y),
                 paint = mPaint.apply {
                     strokeWidth = lineThickness
                 })

@@ -14,10 +14,10 @@ import me.bytebeats.views.charts.bar.render.bar.IBarDrawer
 import me.bytebeats.views.charts.bar.render.bar.SimpleBarDrawer
 import me.bytebeats.views.charts.bar.render.label.IVerticalLabelDrawer
 import me.bytebeats.views.charts.bar.render.label.SimpleVerticalLabelDrawer
-import me.bytebeats.views.charts.bar.render.xaxis.IXAxisDrawer
-import me.bytebeats.views.charts.bar.render.xaxis.SimpleVerticalXAxisDrawer
-import me.bytebeats.views.charts.bar.render.yaxis.IYAxisDrawer
-import me.bytebeats.views.charts.bar.render.yaxis.SimpleYAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.IXAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalXAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.IYAxisDrawer
+import me.bytebeats.views.charts.bar.render.axis.SimpleVerticalYAxisDrawer
 import me.bytebeats.views.charts.simpleChartAnimation
 
 /**
@@ -33,7 +33,7 @@ fun BarChar(
     animation: AnimationSpec<Float> = simpleChartAnimation(),
     barDrawer: IBarDrawer = SimpleBarDrawer(),
     xAxisDrawer: IXAxisDrawer = SimpleVerticalXAxisDrawer(),
-    yAxisDrawer: IYAxisDrawer = SimpleYAxisDrawer(),
+    yAxisDrawer: IYAxisDrawer = SimpleVerticalYAxisDrawer(),
     labelDrawer: IVerticalLabelDrawer = SimpleVerticalLabelDrawer()
 ) {
     val transitionAnimation = remember(barChartData.bars) { Animatable(initialValue = 0F) }

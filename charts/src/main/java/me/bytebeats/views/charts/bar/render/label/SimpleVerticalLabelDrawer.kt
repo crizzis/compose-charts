@@ -33,7 +33,7 @@ data class SimpleVerticalLabelDrawer(
     }
 
     override fun requiredXAxisHeight(drawScope: DrawScope): Float = when (drawLocation) {
-        ILabelDrawer.DrawLocation.XAxis -> labelTextHeight(drawScope)
+        ILabelDrawer.DrawLocation.Axis -> labelTextHeight(drawScope)
         else -> 0F
     }
 
@@ -49,7 +49,7 @@ data class SimpleVerticalLabelDrawer(
             val yCenter = when (drawLocation) {
                 ILabelDrawer.DrawLocation.Inside -> (barArea.top + barArea.bottom) / 2
                 ILabelDrawer.DrawLocation.Outside -> barArea.top - labelTextSize.toPx() / 2
-                ILabelDrawer.DrawLocation.XAxis -> barArea.bottom + labelTextHeight(drawScope)
+                ILabelDrawer.DrawLocation.Axis -> barArea.bottom + labelTextHeight(drawScope)
                 else -> 0F
             }
             canvas.nativeCanvas.drawText(label, xCenter, yCenter, paint(drawScope))

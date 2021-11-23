@@ -33,7 +33,7 @@ data class SimpleHorizontalLabelDrawer(
     }
 
     override fun requiredYAxisWidth(drawScope: DrawScope): Float = when (drawLocation) {
-        ILabelDrawer.DrawLocation.YAxis -> labelTextWidth(drawScope)
+        ILabelDrawer.DrawLocation.Axis -> labelTextWidth(drawScope)
         else -> 0F
     }
 
@@ -49,7 +49,7 @@ data class SimpleHorizontalLabelDrawer(
             val xCenter = when (drawLocation) {
                 ILabelDrawer.DrawLocation.Inside -> (barArea.left + barArea.right) / 2
                 ILabelDrawer.DrawLocation.Outside -> barArea.right - labelTextSize.toPx() / 2
-                ILabelDrawer.DrawLocation.YAxis -> barArea.left - labelTextWidth(drawScope)
+                ILabelDrawer.DrawLocation.Axis -> barArea.left - labelTextWidth(drawScope)
                 else -> 0F
             }
             canvas.nativeCanvas.drawText(label, xCenter, yCenter, paint(drawScope))

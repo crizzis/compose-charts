@@ -1,4 +1,4 @@
-package me.bytebeats.views.charts.bar.render.yaxis
+package me.bytebeats.views.charts.bar.render.axis
 
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
@@ -18,7 +18,7 @@ import kotlin.math.roundToInt
  * Quote: Peasant. Educated. Worker
  */
 
-data class SimpleYAxisDrawer(
+data class SimpleVerticalYAxisDrawer(
     private val labelTextSize: TextUnit = 12.sp,
     private val labelTextColor: Color = Color.Black,
     private val drawLabelEvery: Int = 3,

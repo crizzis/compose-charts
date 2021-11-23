@@ -1,4 +1,4 @@
-package me.bytebeats.views.charts.bar.render.xaxis
+package me.bytebeats.views.charts.bar.render.axis
 
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Canvas

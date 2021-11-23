@@ -19,6 +19,6 @@ interface ILabelDrawer {
     )
 
     enum class DrawLocation {
-        Inside, Outside, XAxis, YAxis;
+        Inside, Outside, Axis;
     }
 }
