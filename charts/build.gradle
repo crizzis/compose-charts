@@ -9,7 +9,7 @@ ext {
     COMPOSE_CHARTS_POM_DESCRIPTION = 'compose-charts: Simple Jetpack Compose Charts for multi-platform. Including Android, Web, Desktop.'
 }
 
-apply from: 'publish_compose_charts.gradle'
+//apply from: 'publish_compose_charts.gradle'
 
 android {
     compileSdk 31
